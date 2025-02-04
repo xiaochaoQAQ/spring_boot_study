@@ -1,31 +1,21 @@
 package org.example.service.impl;
 
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.example.dao.UserMapper;
 import org.example.model.User;
 import org.example.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * \* Created with IntelliJ IDEA.
- * \* User: tangchao
- * \* Date: 2024/5/19
- * \* Time: 13:49
- * \* Description:
- * \
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author 
+ * @since 2024-05-30
  */
 @Service
-public class UserServiceImpl implements IUserService {
-    @Autowired
-    private UserMapper userMapper;
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
-    @Override
-    public int insertUser(User user) {
-        return userMapper.insertUser(user);
-    }
-
-    @Override
-    public int updateUser(User user) {
-        return userMapper.updateUser(user);
-    }
 }

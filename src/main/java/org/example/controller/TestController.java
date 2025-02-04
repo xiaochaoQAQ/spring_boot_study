@@ -16,34 +16,34 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/search")
 public class TestController {
-//    @RequestMapping(value = "/person", method = RequestMethod.GET)
-//    public String person(@RequestParam String name) {
-//        return name;
-//    }
-//
-////    路径参数传参
-//    @RequestMapping(path = "/personGet/{name}",method = RequestMethod.GET)
-//    public String personGet(@PathVariable String name){
-//        return "get-path"+name;
-//    }
-//
-//    @RequestMapping(value = "/personPost", method = RequestMethod.POST)
-//    public String personPost(@RequestBody User user) {
-//        return "post--" + user.getName() + "--" + user.getAge();
-//    }
-//
-//    @RequestMapping(value = "/personPut", method = RequestMethod.PUT)
-//    public String personPut(@RequestBody User user) {
-//        return "put--" + user.getName() + "--" + user.getAge();
-//    }
-//
-//    @RequestMapping(value = "/personDelete/{id}", method = RequestMethod.DELETE)
-//    public String personDelete(@PathVariable String id) {
-//        return "delete--" + id;
-//    }
-//
-//    @RequestMapping("/book")
-//    public String book() {
-//        return "2";
-//    }
+    @RequestMapping(value = "/person", method = RequestMethod.GET)
+    public String person(@RequestParam String name) {
+        return name;
+    }
+
+//    路径参数传参
+    @RequestMapping(path = "/personGet/{name}",method = RequestMethod.GET)
+    public String personGet(@PathVariable String name){
+        return "get-path"+name;
+    }
+
+    @RequestMapping(value = "/personPost", method = RequestMethod.POST)
+    public String personPost(@RequestBody User user) {
+        return "post--" + user.getName() + "--" + user.getAge();
+    }
+
+    @RequestMapping(value = "/personPut", method = RequestMethod.PUT)
+    public String personPut(@RequestBody User user) {
+        return "put--" + user.getName() + "--" + user.getAge();
+    }
+
+    @RequestMapping(value = "/personDelete/{id}", method = RequestMethod.DELETE)
+    public String personDelete(@PathVariable String id) {
+        return "delete--" + id;
+    }
+
+    @RequestMapping("/book")
+    public String book() {
+        return "2";
+    }
 }

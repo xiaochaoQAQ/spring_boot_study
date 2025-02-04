@@ -7,26 +7,26 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
- * \* Created with IntelliJ IDEA.
- * \* User: tangchao
- * \* Date: 2024/4/14
- * \* Time: 15:15
- * \* Description:
- * \商品
+ * 商品
  */
-@TableName("t_shopping_car")
 @Data
+@TableName("t_shopping_car")
 public class Goods {
-    @TableId(type = IdType.AUTO)
+    //mybatis plus 中主键@TableId，IdType.ASSIGN_ID 默认则使用IdType.ASSIGN_ID策略（自3.3.0起）。该策略会使用雪花算法自动生成主键ID,主键类型为Long或String对应MySQL的表字段为BigInt或VARCHAR
+    //mybatis plus 中主键@TableId，IdType.ASSIGN_UUID 自动生成排除中划线的UUID作为主键。主键类型为String，对应MySQL的表分段为VARCHAR（32）
+    //mybatis plus 中主键@TableId，IdType.AUTO  对于MySQL设置主键自动递增，主键类型为Long或int，对应MySQL的表分段为BigInt或int
+    //mybatis plus 中主键@TableId，IdType.INPUT 插入前自行设置主键值
+    @TableId(type= IdType.AUTO,value = "shopping_car_id")
     private Integer shoppingCarId;
-
+    //商品名
     @TableField("goods_name")
-    private String name;
+    private String goodsName;
 
-    @TableField("goods_num")
-    private int num;
+    private int goodsNum;
 
 
+//    @TableField(exist = false)
+//    private  String factoryName;
 
 
 }

@@ -1,8 +1,7 @@
 package org.example.service;
 
-
+import org.example.model.Info;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.example.model.User;
 
 /**
  * <p>
@@ -10,8 +9,8 @@ import org.example.model.User;
  * </p>
  *
  * @author 
- * @since 2024-05-30
+ * @since 2024-06-02
  */
-public interface IUserService extends IService<User> {
+public interface IInfoService extends IService<Info> {
 
 }

@@ -1,62 +1,92 @@
 package org.example.controller;
 
+
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.example.common.RespBean;
 import org.example.model.User;
+import org.example.service.ICaptchaService;
 import org.example.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Action;
+
 
 /**
- * \* Created with IntelliJ IDEA.
- * \* User: tangchao
- * \* Date: 2024/3/31
- * \* Time: 15:58
- * \* Description:
- * \get：查询
- * put：查询和保存
- * delete：删除
+ * <p>
+ *  前端控制器
+ * </p>
+ *
+ * @author 
+ * @since 2024-05-30
  */
 @RestController
 @RequestMapping("/user")
 public class UserController {
-//    @GetMapping(value = "/person")
-//    public String person(@RequestParam String name) {
-//        return name;
-//    }
-//
-////    路径参数传参
-//    @GetMapping(path = "/personGet/{name}")
-//    public String personGet(@PathVariable String name){
-//        return "get-path"+name;
-//    }
-//
-//    @PostMapping(value = "/personPost")
-//    public String personPost(@RequestBody User user) {
-//        return "post--" + user.getName() + "--" + user.getAge();
-//    }
-//
-//    @PutMapping(value = "/personPut")
-//    public String personPut(@RequestBody User user) {
-//        return "put--" + user.getName() + "--" + user.getAge();
-//    }
-//
-//    @DeleteMapping(value = "/personDelete/{id}")
-//    public String personDelete(@PathVariable String id) {
-//        return "delete--" + id;
-//    }
-
     @Autowired
     private IUserService userService;
 
-    @PostMapping("/insertUser")
-    public int insertUser(@RequestBody User user) {
-        int result = userService.insertUser(user);
-        return result;
+    @Autowired
+    private ICaptchaService captchaService;
+
+
+    /**
+     * 获取所有用户（分页）
+     * @param currentPage
+     * @param size
+     * @param name
+     * @return
+     */
+    @GetMapping("/getUser")
+    public Page<User> getUser(@RequestParam(defaultValue = "1") Integer currentPage,
+                              @RequestParam(defaultValue = "10") Integer size,
+                              @RequestParam String name
+                                   ) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        if (name != null && !"".equals(name)){
+            wrapper.like("name",name);
+        }
+        Page<User> page = new Page<>();
+        page.setSize(size);
+        page.setCurrent(currentPage);
+        return userService.page(page,wrapper);
     }
-    @PostMapping("/updateUser")
-    public int updateUser(@RequestBody User user) {
-        int result = userService.updateUser(user);
-        return result;
+
+
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
+    @PostMapping("/addUser")
+    public RespBean addUser(@RequestBody User user) {
+        try{
+            userService.save(user);
+            return RespBean.success("添加成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            return RespBean.error("添加成功");
+        }
+
     }
+
+    @PutMapping("/updateUser")
+    public RespBean updateUser(@RequestBody User user) {
+        if (userService.updateById(user)) {
+            return RespBean.success("更新成功！");
+        }
+        return RespBean.error("更新失败！");
+    }
+
+    @DeleteMapping("/deleteUser/{id}")
+    public RespBean deleteUser(@PathVariable Integer id) {
+        if (userService.removeById(id)) {
+            return RespBean.success("删除成功！");
+        }
+        return RespBean.error("删除失败！");
+    }
+
+
 }
+

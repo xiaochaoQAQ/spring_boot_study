@@ -2,7 +2,7 @@ package org.example.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.example.model.User;
+import org.example.model.RoleInfo;
 
 /**
  * <p>
@@ -10,8 +10,8 @@ import org.example.model.User;
  * </p>
  *
  * @author 
- * @since 2024-05-30
+ * @since 2024-05-31
  */
-public interface IUserService extends IService<User> {
+public interface IRoleInfoService extends IService<RoleInfo> {
 
 }

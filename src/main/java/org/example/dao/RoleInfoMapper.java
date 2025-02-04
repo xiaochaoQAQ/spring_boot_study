@@ -1,8 +1,10 @@
 package org.example.dao;
 
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.example.model.User;
+import org.example.model.RoleInfo;
+
 
 /**
  * <p>
@@ -10,9 +12,9 @@ import org.example.model.User;
  * </p>
  *
  * @author 
- * @since 2024-05-30
+ * @since 2024-05-31
  */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface RoleInfoMapper extends BaseMapper<RoleInfo> {
 
 }
